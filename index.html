@@ -1,15 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <title>Document</title>
-</head>
-<body>
-  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <div>
+        <input type="text" id="taskName" class="border rounded-lg" />
+        <button class="border bg-slate-500" id="btnTask">Add task</button>
+      </div>
 
-  <script src="/Js/index.js"></script>
-</body>
+      <section>
+        <div id="notInitiated"></div>
+
+        <div id="started"></div>
+
+        <div id="completed"></div>
+      </section>
+    </main>
+
+    <script src="/Js/index.js"></script>
+  </body>
 </html>
