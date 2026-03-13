@@ -25,13 +25,35 @@ function addNewTask() {
   console.log(listTask);
   taskName.value = "";
 }
-
+// renderizar valor na tela
 function renderTask() {
   const render = listTask.map((task) => {
-    return `<div bg-white, p-4, rounded-lg, shadow, mb-2, cursor-move data-id"${task.id}">${task.name}</div>`;
+    return `<div class="bg-white p-4 rounded-lg shadow mb-2 cursor-move" data-id"${task.id}">${task.name}</div>`;
   });
 
   notInitiated.innerHTML = render.join("");
 }
 
+function initSortable() {
+  new Sortable.create(notInitiated, {
+    group: "kanban",
+    animation: 100,
+    pull: true,
+    put: true,
+  });
+   new Sortable.create(started, {
+    group: "kanban",
+    animation: 100,
+    pull: true,
+    put: true,
+  });
+   new Sortable.create(completed, {
+    group: "kanban",
+    animation: 100,
+    pull: true,
+    put: true,
+  });
+}
+
+initSortable();
 btnTask.addEventListener("click", addNewTask);
