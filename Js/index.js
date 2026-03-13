@@ -28,7 +28,7 @@ function addNewTask() {
 // renderizar valor na tela
 function renderTask() {
   const render = listTask.map((task) => {
-    return `<div class="bg-white p-4 rounded-lg shadow mb-2 cursor-move" data-id"${task.id}">${task.name}</div>`;
+    return `<div class="bg-white p-3 rounded shadow-sm mb-2 cursor-move border-l-4 border-blue-500" data-id="${task.id}">${task.name}</div>`;
   });
 
   notInitiated.innerHTML = render.join("");
