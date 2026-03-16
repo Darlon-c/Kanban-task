@@ -20,7 +20,7 @@ function loadToLocalStorage() {
 }
 
 function addNewTask() {
-  if (taskName.value === "" || !taskName.value.trim() ) {
+  if (taskName.value === "" || !taskName.value.trim()) {
     alert("Informe a tarefa");
     return;
   }
@@ -49,29 +49,44 @@ function renderTask() {
   notInitiated.innerHTML = taskNotInitiated
     .map(
       (task) =>
-        `<div class="bg-white p-3 rounded shadow-sm mb-2 cursor-move border-l-4 border-teal-500" data-id="${task.id}">${task.name}</div>`,
+        `<div class="bg-slate-100 justify-between flex p-3 rounded shadow-sm mb-2 cursor-move border-l-4 border-teal-500" data-id="${task.id}">${task.name}
+         <button onclick="removeTask(${task.id})"><i class="fa-solid fa-trash" style="color: rgb(230, 99, 99);"></i></button>        
+        </div>`,
     )
     .join("");
 
   started.innerHTML = taskStarted
     .map(
       (task) =>
-        `<div class="bg-white p-3 rounded shadow-sm mb-2 cursor-move border-l-4 border-teal-500" data-id="${task.id}">${task.name}</div>`,
+        `<div class="bg-gray-100 flex justify-between p-3 rounded shadow-sm mb-2 cursor-move border-l-4 border-teal-500" data-id="${task.id}">${task.name}
+          <button onclick="removeTask(${task.id})"><i class="fa-solid fa-trash" style="color: rgb(230, 99, 99);"></i></button>
+        </div>`,
     )
     .join("");
 
   completed.innerHTML = taskCompleted
     .map(
       (task) =>
-        `<div class="bg-white p-3 rounded shadow-sm mb-2 cursor-move border-l-4 border-teal-500" data-id="${task.id}">${task.name}</div>`,
+        `<div class="bg-gray-100 p-3 flex justify-between  rounded shadow-sm mb-2 cursor-move border-l-4 border-teal-500" data-id="${task.id}">${task.name}
+          <button onclick="removeTask(${task.id})"><i class="fa-solid fa-trash" style="color: rgb(230, 99, 99);"></i></button>
+        </div>`,
     )
     .join("");
+}
+
+function removeTask(id) {
+  listTask = listTask.filter((task) => {
+    return task.id !== id;
+  });
+
+  saveToLocalStorage();
+  renderTask();
 }
 
 function initSortable() {
   new Sortable.create(notInitiated, {
     group: "kanban",
-    animation: 100,
+    animation: 150,
     pull: true,
     put: true,
     onEnd: function (evt) {
@@ -87,7 +102,7 @@ function initSortable() {
 
   new Sortable.create(started, {
     group: "kanban",
-    animation: 100,
+    animation: 150,
     pull: true,
     put: true,
     onEnd: function (evt) {
@@ -102,7 +117,7 @@ function initSortable() {
   });
   new Sortable.create(completed, {
     group: "kanban",
-    animation: 100,
+    animation: 150,
     pull: true,
     put: true,
     onEnd: function (evt) {
