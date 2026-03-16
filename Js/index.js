@@ -41,13 +41,13 @@ function initSortable() {
     pull: true,
     put: true,
   });
-   new Sortable.create(started, {
+  new Sortable.create(started, {
     group: "kanban",
     animation: 100,
     pull: true,
     put: true,
   });
-   new Sortable.create(completed, {
+  new Sortable.create(completed, {
     group: "kanban",
     animation: 100,
     pull: true,
