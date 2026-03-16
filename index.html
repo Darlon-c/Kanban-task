@@ -21,18 +21,18 @@
       <input
         type="text"
         id="taskName"
-        class="px-8 py-2 border-0 rounded-lg shadow-lg focus:ring-2 focus:ring-blue-300 w-80"
+        class="px-8 py-2 border-0 rounded-lg shadow-lg focus:ring-2 focus:ring-teal-300 w-80"
         placeholder="Adicionar nova tarefa..."
       />
       <button
-        class="px-4 py-1 font-semibold tracking-tighter bg-teal-300 rounded-md hover:bg-teal-700"
+        class="px-4 py-1 font-semibold tracking-tighter bg-teal-400 rounded-md hover:bg-teal-300"
         id="btnTask"
       >
         Add task
       </button>
     </div>
     <main class="min-h-screen px-4 py-8 bg-gray-50">
-      <section class="grid max-w-6xl grid-cols-3 gap-6 mx-auto">
+      <section class="grid grid-cols-1 gap-4 px-4 mx-auto mt-8 md:grid-cols-2 lg:grid-cols-3 lg:max-w-6xl">
         <div class="flex-col felx">
           <h3 class="mb-3 text-lg font-semibold text-gray-700">
             <span
@@ -67,13 +67,12 @@
             Finalizado
           </h3>
           <div
-             class="min-h-[550px] bg-white p-3 rounded-xl shadow-sm border border-gray-200"
+            class="min-h-[550px] bg-white p-3 rounded-xl shadow-sm border border-gray-200"
             id="completed"
           ></div>
         </div>
       </section>
     </main>
-
     <script src="/Js/index.js"></script>
   </body>
 </html>

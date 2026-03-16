@@ -7,6 +7,18 @@ const completed = document.getElementById("completed");
 let listTask = [];
 let idCount = 1;
 
+function loadToLocalStorage() {
+  const saveData = localStorage.getItem("task");
+
+  if (saveData) {
+    listTask = JSON.parse(saveData);
+    if (listTask.length > 0) {
+      idCount = Math.max(...listTask.map((p) => p.id)) + 1;
+    }
+    renderTask();
+  }
+}
+
 function addNewTask() {
   if (taskName.value === "") {
     alert("task");
@@ -21,9 +33,9 @@ function addNewTask() {
 
   listTask.push(task);
   idCount++;
+  saveToLocalStorage();
   renderTask();
 
-  console.log(listTask);
   taskName.value = "";
 }
 // renderizar valor na tela
@@ -69,6 +81,7 @@ function initSortable() {
       if (evt.to.id === "notInitiated") task.status = "notInitiated";
       if (evt.to.id === "started") task.status = "started";
       if (evt.to.id === "completed") task.status = "completed";
+      saveToLocalStorage();
     },
   });
 
@@ -84,6 +97,7 @@ function initSortable() {
       if (evt.to.id === "notInitiated") task.status = "notInitiated";
       if (evt.to.id === "started") task.status = "started";
       if (evt.to.id === "completed") task.status = "completed";
+      saveToLocalStorage();
     },
   });
   new Sortable.create(completed, {
@@ -98,9 +112,15 @@ function initSortable() {
       if (evt.to.id === "notInitiated") task.status = "notInitiated";
       if (evt.to.id === "started") task.status = "started";
       if (evt.to.id === "completed") task.status = "completed";
+      saveToLocalStorage();
     },
   });
 }
 
+function saveToLocalStorage() {
+  localStorage.setItem("task", JSON.stringify(listTask));
+}
+
+loadToLocalStorage();
 initSortable();
 btnTask.addEventListener("click", addNewTask);
