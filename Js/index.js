@@ -16,6 +16,7 @@ function addNewTask() {
   const task = {
     id: idCount,
     name: taskName.value,
+    status: "notInitiated",
   };
 
   listTask.push(task);
@@ -27,11 +28,32 @@ function addNewTask() {
 }
 // renderizar valor na tela
 function renderTask() {
-  const render = listTask.map((task) => {
-    return `<div class="bg-white p-3 rounded shadow-sm mb-2 cursor-move border-l-4 border-blue-500" data-id="${task.id}">${task.name}</div>`;
-  });
+  const taskNotInitiated = listTask.filter(
+    (task) => task.status === "notInitiated",
+  );
+  const taskStarted = listTask.filter((task) => task.status === "started");
+  const taskCompleted = listTask.filter((task) => task.status === "completed");
 
-  notInitiated.innerHTML = render.join("");
+  notInitiated.innerHTML = taskNotInitiated
+    .map(
+      (task) =>
+        `<div class="bg-white p-3 rounded shadow-sm mb-2 cursor-move border-l-4 border-teal-500" data-id="${task.id}">${task.name}</div>`,
+    )
+    .join("");
+
+  started.innerHTML = taskStarted
+    .map(
+      (task) =>
+        `<div class="bg-white p-3 rounded shadow-sm mb-2 cursor-move border-l-4 border-teal-500" data-id="${task.id}">${task.name}</div>`,
+    )
+    .join("");
+
+  completed.innerHTML = taskCompleted
+    .map(
+      (task) =>
+        `<div class="bg-white p-3 rounded shadow-sm mb-2 cursor-move border-l-4 border-teal-500" data-id="${task.id}">${task.name}</div>`,
+    )
+    .join("");
 }
 
 function initSortable() {
@@ -40,18 +62,43 @@ function initSortable() {
     animation: 100,
     pull: true,
     put: true,
+    onEnd: function (evt) {
+      const cardId = evt.item.dataset.id;
+      const task = listTask.find((t) => t.id == cardId);
+
+      if (evt.to.id === "notInitiated") task.status = "notInitiated";
+      if (evt.to.id === "started") task.status = "started";
+      if (evt.to.id === "completed") task.status = "completed";
+    },
   });
+
   new Sortable.create(started, {
     group: "kanban",
     animation: 100,
     pull: true,
     put: true,
+    onEnd: function (evt) {
+      const cardId = evt.item.dataset.id;
+      const task = listTask.find((t) => t.id == cardId);
+
+      if (evt.to.id === "notInitiated") task.status = "notInitiated";
+      if (evt.to.id === "started") task.status = "started";
+      if (evt.to.id === "completed") task.status = "completed";
+    },
   });
   new Sortable.create(completed, {
     group: "kanban",
     animation: 100,
     pull: true,
     put: true,
+    onEnd: function (evt) {
+      const cardId = evt.item.dataset.id;
+      const task = listTask.find((t) => t.id == cardId);
+
+      if (evt.to.id === "notInitiated") task.status = "notInitiated";
+      if (evt.to.id === "started") task.status = "started";
+      if (evt.to.id === "completed") task.status = "completed";
+    },
   });
 }
 
