@@ -67,7 +67,7 @@ function renderTask() {
   completed.innerHTML = taskCompleted
     .map(
       (task) =>
-        `<div class="bg-gray-100 p-3 flex justify-between  rounded shadow-sm mb-2 cursor-move border-l-4 border-teal-500" data-id="${task.id}">${task.name}
+        `<div class="bg-gray-100 p-3 flex justify-between rounded shadow-sm mb-2 cursor-move border-l-4 border-teal-500" data-id="${task.id}">${task.name}
           <button onclick="removeTask(${task.id})"><i class="fa-solid fa-trash" style="color: rgb(230, 99, 99);"></i></button>
         </div>`,
     )
@@ -86,7 +86,7 @@ function removeTask(id) {
 function initSortable() {
   new Sortable.create(notInitiated, {
     group: "kanban",
-    animation: 150,
+    animation: 300,
     pull: true,
     put: true,
     onEnd: function (evt) {
@@ -102,7 +102,7 @@ function initSortable() {
 
   new Sortable.create(started, {
     group: "kanban",
-    animation: 150,
+    animation: 300,
     pull: true,
     put: true,
     onEnd: function (evt) {
@@ -117,7 +117,7 @@ function initSortable() {
   });
   new Sortable.create(completed, {
     group: "kanban",
-    animation: 150,
+    animation: 300,
     pull: true,
     put: true,
     onEnd: function (evt) {
