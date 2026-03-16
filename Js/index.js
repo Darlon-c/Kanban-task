@@ -20,8 +20,8 @@ function loadToLocalStorage() {
 }
 
 function addNewTask() {
-  if (taskName.value === "") {
-    alert("task");
+  if (taskName.value === "" || !taskName.value.trim() ) {
+    alert("Informe a tarefa");
     return;
   }
 
