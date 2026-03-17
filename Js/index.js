@@ -49,7 +49,7 @@ function renderTask() {
   notInitiated.innerHTML = taskNotInitiated
     .map(
       (task) =>
-        `<div class="bg-slate-100 justify-between flex p-3 rounded shadow-sm mb-2 cursor-move border-l-4 border-teal-500" data-id="${task.id}">${task.name}
+        `<div class="bg-gray-100 justify-between flex p-3 rounded shadow-sm mb-2 cursor-move border-l-4 border-teal-500" data-id="${task.id}">${task.name}
          <button onclick="removeTask(${task.id})"><i class="fa-solid fa-trash" style="color: rgb(230, 99, 99);"></i></button>        
         </div>`,
     )
